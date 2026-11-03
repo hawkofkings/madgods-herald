@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Undertake the nine trials of The Madgod's Herald.">
+<title>The Sorting Ceremony | The Madgod's Herald</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--crimson:#8f2638;--gold:#c9a45b;--pale:#f0d89e;--purple:#4d285d;--text:#eee5d8;--muted:#b8aeb8}
+*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;color:var(--text);background:radial-gradient(ellipse at 12% 15%,#8f263833,transparent 34rem),radial-gradient(ellipse at 88% 55%,#4d285d3d,transparent 38rem),linear-gradient(145deg,#100c12,#19111b 55%,#100c12);font:20px/1.6 "Cormorant Garamond",Georgia,serif}
+a{color:inherit;text-decoration:none}header{border-bottom:1px solid #c9a45b40;background:#0d0a0fcc}.nav{width:min(1120px,90%);min-height:76px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{color:var(--pale);font:700 15px Cinzel,serif;letter-spacing:2px}.home{color:var(--muted);font:600 11px Cinzel,serif;letter-spacing:1.5px}
+main{width:min(850px,90%);margin:64px auto 80px}.eyebrow{text-align:center;color:var(--gold);font:600 11px Cinzel,serif;letter-spacing:3px}h1{text-align:center;color:var(--pale);font:700 clamp(30px,5vw,48px)/1.2 Cinzel,serif;margin:12px 0}.intro{text-align:center;color:#d7c5b9;font-size:22px;max-width:700px;margin:0 auto 34px}
+.panel{padding:clamp(24px,5vw,48px);background:#1b131deF;border:1px solid #c9a45b4d;box-shadow:0 22px 65px #0005}.progress-top{display:flex;justify-content:space-between;gap:12px;color:var(--gold);font:600 11px Cinzel,serif;letter-spacing:1.3px;margin-bottom:12px}.track{height:5px;background:#342738;margin-bottom:34px}.fill{height:100%;background:linear-gradient(90deg,var(--crimson),var(--gold));transition:width .25s}.question{color:#f0e5d8;font-size:clamp(24px,3vw,30px);line-height:1.3;margin-bottom:26px}.answers{display:grid;gap:14px}.answer{display:flex;gap:14px;width:100%;padding:17px 18px;text-align:left;color:var(--text);font:500 20px/1.4 "Cormorant Garamond",Georgia,serif;background:#09070c73;border:1px solid #c9a45b40;cursor:pointer}.answer:hover,.answer[aria-pressed=true]{border-color:var(--gold);background:#8f26383b}.letter{flex:0 0 28px;color:var(--gold);font:600 13px Cinzel,serif;padding-top:3px}.controls{display:flex;justify-content:space-between;gap:14px;margin-top:34px}button.control{font:600 11px Cinzel,serif;letter-spacing:1.5px;padding:13px 22px;cursor:pointer}.secondary{color:var(--muted);background:transparent;border:1px solid #c9a45b4d}.primary{color:var(--pale);border:1px solid var(--gold);background:linear-gradient(135deg,var(--crimson),var(--purple))}button:disabled{opacity:.35;cursor:not-allowed}.notice{display:none;margin-top:24px;padding:18px;border-left:3px solid #bd4654;background:#08060a70;color:#e5d8d8;font-size:18px}.notice.show{display:block}.notice strong{display:block;color:var(--pale);font:600 12px Cinzel,serif;letter-spacing:1px;margin-bottom:6px}footer{text-align:center;color:#938994;font-size:15px;padding:30px 15px;border-top:1px solid #c9a45b33}@media(max-width:600px){.nav{padding:16px 0;flex-direction:column}.controls button{flex:1;padding:13px 10px}main{margin-top:42px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><a class="brand" href="index.html">THE MADGOD'S HERALD</a><a class="home" href="index.html">← RETURN TO THE ISLES</a></div></header>
+<main><p class="eyebrow">UNDER THE WATCHFUL EYE OF THE CHAMBERLAIN</p><h1>The Sorting Ceremony</h1><p class="intro">Nine questions stand between you and your place in the Shivering Isles. Consider each carefully. His Grace does appreciate a thoughtful answer.</p>
+<section class="panel" aria-label="Sorting quiz">
+<div class="progress-top"><span id="trial">TRIAL I OF IX</span><span id="count">0 OF 9 ANSWERED</span></div><div class="track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" id="progress"><div class="fill" id="fill" style="width:11.11%"></div></div>
+<h2 class="question" id="question"></h2><div class="answers" id="answers"></div>
+<div class="controls"><button class="control secondary" id="back" type="button">← PREVIOUS</button><button class="control primary" id="next" type="button" disabled>NEXT TRIAL →</button></div>
+<div class="notice" id="notice" role="status"><strong>THE CHAMBERLAIN ACKNOWLEDGES YOUR ANSWERS</strong>The quiz page is prepared, but secure Discord sign-in, private scoring, and role assignment have not yet been connected. Your answers have not been submitted or saved. Return when the ceremony has been connected.</div>
+</section></main><footer>An unofficial fan-made project inspired by The Elder Scrolls series.</footer>
+<script>
+const trials=[
+["A stranger gives you a gift with no explanation. What's your first thought?",["How exciting! What a wonderful surprise!","What do they want from me? What's the catch?"]],
+["You're alone in a room with a locked door. How do you feel?",["Peaceful. Finally, some quiet.","Uneasy. Why is it locked? Who locked it?"]],
+["Pick a landscape:",["A sunlit meadow full of impossible, screaming colors.","A moonlit cliff overlooking a stormy black sea."]],
+["Someone you trust suddenly changes how they act toward you. What do you do?",["Maybe they're having a new kind of day. Roll with it!","Something is wrong. They're hiding something."]],
+["You find a beautiful object with no owner. What crosses your mind?",["How gorgeous. I should admire it.","Where did it come from? Who lost it?"]],
+["A voice whispers to you in an empty room. Do you lean in or back away?",["Lean in. I want to hear what it says.","Back away. Nothing good comes from whispers."]],
+["A wheel of aged Eringot cheese sits before you, perfectly ripe. Do you eat it now or save it for a special occasion?",["Eat it NOW, of course! Cheese waits for no mortal!","Save it. What if there's nothing good later?"]],
+["Sheogorath invites you to a grand cheese party. A long table stretches before you, overflowing with every cheese imaginable. Where do you sit?",["Right at the head of the table next to him! More cheese, more company, more everything!","Quietly at the far end. Close enough to watch, far enough to leave if something goes wrong."]],
+["Complete this sentence: “The best kind of madness is...”",["“...the kind that makes the whole world feel alive and singing.”","“...the kind that hides in the corners where no one else looks.”"]]
+];
+let current=0;const chosen=Array(9).fill(null);const $=id=>document.getElementById(id);
+function render(){const t=trials[current];$("trial").textContent=`TRIAL ${["I","II","III","IV","V","VI","VII","VIII","IX"][current]} OF IX`;$("count").textContent=`${chosen.filter(x=>x!==null).length} OF 9 ANSWERED`;$("fill").style.width=`${(current+1)/9*100}%`;$("progress").setAttribute("aria-valuenow",chosen.filter(x=>x!==null).length);$("question").textContent=t[0];$("answers").replaceChildren();t[1].forEach((label,i)=>{const b=document.createElement("button");b.type="button";b.className="answer";b.setAttribute("aria-pressed",String(chosen[current]===i));const l=document.createElement("span");l.className="letter";l.textContent=i?"B":"A";const s=document.createElement("span");s.textContent=label;b.append(l,s);b.onclick=()=>{chosen[current]=i;$("notice").classList.remove("show");render()};$("answers").append(b)});$("back").disabled=current===0;$("next").disabled=chosen[current]===null;$("next").textContent=current===8?"FINISH TRIALS":"NEXT TRIAL →"}
+$("back").onclick=()=>{if(current>0){current--;render()}};$("next").onclick=()=>{if(chosen[current]===null)return;if(current<8){current++;render()}else{$("notice").classList.add("show");$("notice").scrollIntoView({behavior:"smooth",block:"nearest"})}};render();
+</script>
+</body></html>
