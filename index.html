@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The official home of The Madgod's Herald, a Shivering Isles-inspired Discord sorting ceremony. Discover whether you belong to Mania or Dementia.">
+  <meta name="theme-color" content="#100c12">
+  <title>The Madgod's Herald | The Shivering Isles</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --crimson: #8f2638;
+      --crimson-bright: #bd4654;
+      --gold: #c9a45b;
+      --gold-light: #f0d89e;
+      --purple: #4d285d;
+      --ink: #100c12;
+      --panel: rgba(27, 19, 29, .88);
+      --text: #eee5d8;
+      --muted: #b8aeb8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 15%, rgba(143,38,56,.20), transparent 34rem),
+        radial-gradient(ellipse at 88% 55%, rgba(77,40,93,.24), transparent 38rem),
+        linear-gradient(145deg, #100c12, #19111b 55%, #100c12);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 20px;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 90%); margin: 0 auto; }
+
+    header {
+      position: relative; z-index: 2;
+      border-bottom: 1px solid rgba(201,164,91,.24);
+      background: rgba(13,10,15,.78);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 78px; display: flex; justify-content: space-between;
+      align-items: center; gap: 24px;
+    }
+    .brand {
+      color: var(--gold-light); font: 700 16px "Cinzel", serif;
+      letter-spacing: 2px;
+    }
+    nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    nav a, .footer-links a {
+      color: var(--muted); font: 600 11px "Cinzel", serif;
+      letter-spacing: 1.4px; transition: color .2s ease;
+    }
+    nav a:hover, .footer-links a:hover { color: var(--gold-light); }
+
+    .hero {
+      min-height: 680px; display: grid; grid-template-columns: 1.02fr .98fr;
+      align-items: center; gap: 48px; padding: 76px 0 84px;
+    }
+    .eyebrow {
+      color: var(--gold); font: 600 12px "Cinzel", serif;
+      letter-spacing: 4px; margin-bottom: 22px;
+    }
+    h1 {
+      color: var(--gold-light); font: 700 clamp(38px, 5.2vw, 66px)/1.13 "Cinzel", serif;
+      letter-spacing: 1px; text-shadow: 0 4px 32px rgba(201,164,91,.15);
+    }
+    .subtitle {
+      color: #d7c5b9; font-size: clamp(23px, 2.5vw, 30px);
+      font-style: italic; margin: 20px 0 24px;
+    }
+    .rule {
+      width: 112px; height: 2px; margin: 26px 0;
+      background: linear-gradient(90deg, var(--crimson), var(--gold), transparent);
+    }
+    .intro { max-width: 610px; color: #e2d8d0; font-size: 23px; }
+    .haskill-frame {
+      position: relative; max-width: 470px; justify-self: end; width: 100%;
+      padding: 10px; border: 1px solid rgba(201,164,91,.55);
+      background: linear-gradient(145deg, rgba(201,164,91,.22), rgba(143,38,56,.15), rgba(77,40,93,.24));
+      box-shadow: 0 25px 75px rgba(0,0,0,.48), 0 0 55px rgba(143,38,56,.12);
+    }
+    .haskill-frame::before {
+      content: ""; position: absolute; inset: 5px;
+      border: 1px solid rgba(240,216,158,.24); pointer-events: none; z-index: 1;
+    }
+    .haskill-frame img {
+      display: block; width: 100%; aspect-ratio: 1 / 1.08;
+      object-fit: cover; object-position: center 35%; filter: saturate(.88) contrast(1.04);
+    }
+    .portrait-caption {
+      position: absolute; left: 0; right: 0; bottom: 10px;
+      padding: 34px 18px 18px; text-align: center; color: var(--gold-light);
+      font: 600 12px "Cinzel", serif; letter-spacing: 2px;
+      background: linear-gradient(transparent, rgba(10,7,12,.92)); z-index: 2;
+    }
+
+    section { padding: 74px 0; }
+    .section-title {
+      color: var(--gold-light); text-align: center;
+      font: 600 clamp(26px, 3vw, 36px) "Cinzel", serif; margin-bottom: 15px;
+    }
+    .section-lead {
+      max-width: 760px; margin: 0 auto 42px; text-align: center;
+      color: var(--muted); font-size: 22px;
+    }
+    .quote-card {
+      max-width: 900px; margin: 0 auto; padding: 42px clamp(24px, 5vw, 58px);
+      text-align: center; background: linear-gradient(135deg, rgba(143,38,56,.18), rgba(77,40,93,.18));
+      border: 1px solid rgba(201,164,91,.28); box-shadow: 0 18px 55px rgba(0,0,0,.18);
+    }
+    .quote-mark { color: var(--crimson-bright); font: 48px Georgia, serif; line-height: .8; }
+    .quote-card blockquote {
+      color: #f0e5d8; font-size: clamp(22px, 2.5vw, 28px);
+      font-style: italic; margin: 16px 0 20px;
+    }
+    .attribution { color: var(--gold); font: 600 11px "Cinzel", serif; letter-spacing: 2px; }
+
+    .realms { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .realm {
+      min-height: 260px; padding: 38px 32px; text-align: center;
+      background: var(--panel); border: 1px solid rgba(201,164,91,.18);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .realm:hover { transform: translateY(-5px); }
+    .realm.mania { border-top: 3px solid var(--gold); }
+    .realm.dementia { border-top: 3px solid #80509a; }
+    .symbol { font-size: 42px; line-height: 1.2; }
+    .realm h3 { margin: 16px 0 12px; font: 600 19px/1.5 "Cinzel", serif; }
+    .mania h3 { color: var(--gold-light); }
+    .dementia h3 { color: #c8a0dc; }
+    .realm p { color: var(--muted); font-size: 21px; }
+
+    .steps-panel {
+      padding: 52px 32px; text-align: center;
+      border: 1px solid rgba(201,164,91,.25);
+      background: linear-gradient(135deg, rgba(77,40,93,.20), rgba(143,38,56,.13));
+    }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 38px; }
+    .step { padding: 16px; }
+    .step-number { color: var(--gold); font: 600 30px "Cinzel", serif; }
+    .step h3 { margin: 8px 0; color: var(--gold-light); font: 600 14px "Cinzel", serif; }
+    .step p { color: var(--muted); font-size: 19px; }
+
+    .greymarch {
+      position: relative; overflow: hidden; max-width: 980px; margin: 0 auto;
+      padding: 48px clamp(24px, 5vw, 58px);
+      border: 1px solid rgba(189,70,84,.48);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(143,38,56,.25), transparent 65%),
+        linear-gradient(145deg, rgba(24,14,23,.96), rgba(39,19,34,.94));
+      box-shadow: 0 22px 65px rgba(0,0,0,.28);
+      text-align: center;
+    }
+    .greymarch .eyebrow { color: #d77b83; margin-bottom: 12px; }
+    .greymarch h2 {
+      color: #e8c6c1; font: 700 clamp(27px, 3.5vw, 40px) "Cinzel", serif;
+      margin-bottom: 18px; letter-spacing: 1px;
+    }
+    .greymarch-intro {
+      max-width: 760px; margin: 0 auto 30px; color: #d4c3c8; font-size: 22px;
+    }
+    .proclamation {
+      max-width: 760px; margin: 0 auto; padding: 28px 30px;
+      border-left: 3px solid var(--crimson-bright);
+      background: rgba(8,6,10,.42); text-align: left;
+    }
+    .proclamation p { color: #e9dfe0; font-size: 22px; font-style: italic; }
+    .proclamation .signoff {
+      display: block; margin-top: 18px; color: var(--gold);
+      font: 600 11px "Cinzel", serif; letter-spacing: 1.8px; font-style: normal;
+    }
+    .greymarch-note {
+      margin: 24px auto 0; max-width: 740px; color: #a99aa4; font-size: 17px;
+    }
+    .status-seal {
+      display: inline-block; margin-top: 26px; padding: 8px 15px;
+      border: 1px solid rgba(201,164,91,.35); color: var(--gold-light);
+      font: 600 10px "Cinzel", serif; letter-spacing: 1.8px;
+    }
+
+    footer {
+      margin-top: 30px; padding: 42px 0; border-top: 1px solid rgba(201,164,91,.22);
+      background: rgba(8,6,10,.42); text-align: center;
+    }
+    .footer-brand { color: var(--gold); font: 700 15px "Cinzel", serif; letter-spacing: 2px; }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 26px; margin: 18px 0; }
+    .fine-print { color: #938994; font-size: 15px; }
+
+    @media (max-width: 760px) {
+      .nav { padding: 18px 0; flex-direction: column; }
+      nav { justify-content: center; gap: 15px; }
+      .hero { grid-template-columns: 1fr; gap: 38px; padding: 62px 0; text-align: center; }
+      .rule { margin: 24px auto; }
+      .intro { margin: 0 auto; }
+      .haskill-frame { justify-self: center; max-width: 390px; }
+      .realms, .steps { grid-template-columns: 1fr; }
+      section { padding: 56px 0; }
+      .proclamation { padding: 24px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">THE MADGOD'S HERALD</a>
+      <nav aria-label="Main navigation">
+        <a href="#welcome">WELCOME</a>
+        <a href="#realms">THE REALMS</a>
+        <a href="#ceremony">SORTING</a>
+        <a href="quiz.html">TAKE THE TRIAL</a>
+        <a href="#greymarch">THE GREYMARCH</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="welcome">
+      <div>
+        <p class="eyebrow">A MESSAGE FROM THE CHAMBERLAIN</p>
+        <h1>THE MADGOD'S<br>HERALD</h1>
+        <p class="subtitle">A realm of madness. A choice of destiny.</p>
+        <div class="rule"></div>
+        <p class="intro">
+          Ah, welcome. His Grace has been expecting you. I am Haskill,
+          chamberlain to the Madgod, and it falls upon me to oversee
+          your little... examination.
+          <br><br>
+          Nine questions await you. Nine opportunities to demonstrate
+          where your particular brand of madness belongs. Will you find
+          your place beneath the golden skies of Mania, or among the
+          shadowed depths of Dementia?
+        </p>
+      </div>
+      <div class="haskill-frame">
+        <img src="assets/haskill.jpg" alt="Haskill, chamberlain and herald of Sheogorath">
+        <div class="portrait-caption">HASKILL · CHAMBERLAIN TO THE MADGOD</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">A Trial of the Mind</h2>
+        <p class="section-lead">
+          The Madgod's Herald invites you to undertake nine trials.
+          Each answer reveals a little more about your nature, your
+          instincts, and the realm that calls to you.
+        </p>
+        <div class="quote-card">
+          <div class="quote-mark">“</div>
+          <blockquote>
+            Please, do try to answer honestly. His Grace does so enjoy
+            a surprise, but even he appreciates a little order in the proceedings.
+          </blockquote>
+          <p class="attribution">— HASKILL</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="realms">
+      <div class="container">
+        <h2 class="section-title">Two Realms. One Destiny.</h2>
+        <p class="section-lead">
+          The Isles are divided between two contrasting realms.
+          Your answers will reveal which one has laid claim to you.
+        </p>
+        <div class="realms">
+          <article class="realm mania">
+            <div class="symbol" aria-hidden="true">☀</div>
+            <h3>THE GOLDEN REALM OF MANIA</h3>
+            <p>
+              Brilliance, passion, creativity, ambition, and boundless
+              imagination. Those who embrace the extraordinary may find
+              themselves drawn toward Mania.
+            </p>
+          </article>
+          <article class="realm dementia">
+            <div class="symbol" aria-hidden="true">☾</div>
+            <h3>THE SHADOWED REALM OF DEMENTIA</h3>
+            <p>
+              Shadows, contemplation, mystery, caution, and hidden truths.
+              Those who find meaning in the darkness may discover their
+              place in Dementia.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ceremony">
+      <div class="container">
+        <div class="steps-panel">
+          <h2 class="section-title">The Sorting Ceremony</h2>
+          <p class="section-lead">
+            Your journey is simple. Your destiny, however, may be anything but.
+          </p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">I</div>
+              <h3>ENTER THE ISLES</h3>
+              <p>Connect your Discord account so Haskill knows whose fate is before him.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">II</div>
+              <h3>ANSWER THE NINE TRIALS</h3>
+              <p>Choose the answers that feel true to you. The scoring remains Haskill's secret.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">III</div>
+              <h3>RECEIVE YOUR REALM</h3>
+              <p>Haskill reveals your result and the bot grants your corresponding Discord role.</p>
+            </div>
+          </div>
+          <p style="margin-top:30px;"><a href="quiz.html" style="display:inline-block;padding:13px 27px;border:1px solid #c9a45b;background:linear-gradient(135deg,#8f2638,#4d285d);color:#f0d89e;font:600 12px Cinzel,serif;letter-spacing:1.8px;">BEGIN THE SORTING CEREMONY</a></p>
+          <p class="greymarch-note">
+            Your realm is yours once assigned. You cannot retake the ordinary ceremony
+            or change your house yourself. A new sorting is possible only when the
+            server's administrator declares the Greymarch.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="greymarch">
+      <div class="container">
+        <div class="greymarch">
+          <p class="eyebrow">A DECREE FROM HIS GRACE</p>
+          <h2>THE GREYMARCH</h2>
+          <p class="greymarch-intro">
+            Even the order of the Shivering Isles may be undone. When the
+            server's administrator invokes the Greymarch, the old house
+            assignments are cleared and a new sorting begins.
+          </p>
+
+          <div class="proclamation">
+            <p>
+              “Attention, inhabitants of the Shivering Isles.
+              By decree of His Grace, the Madgod, the boundaries between
+              Mania and Dementia shall once again be undone.
+              Your former allegiances are no more. The realms stand open,
+              and the time has come for a new reckoning.
+              The old sorting is over. A new trial awaits those brave
+              enough to face it.”
+            </p>
+            <span class="signoff">— HASKILL, CHAMBERLAIN TO THE MADGOD</span>
+          </div>
+
+          <p class="greymarch-note">
+            During the Greymarch, Haskill announces the event in Discord,
+            existing Mania and Dementia roles are removed, and eligible
+            members may undertake the active Greymarch question set.
+            The alternate questions will be revealed when the event is prepared.
+          </p>
+
+          <span class="status-seal">THE GREYMARCH IS AN ADMINISTRATOR-ACTIVATED EVENT</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-brand">THE MADGOD'S HERALD</p>
+      <div class="footer-links">
+        <a href="index.html">HOME</a>
+        <a href="terms.html">TERMS OF SERVICE</a>
+        <a href="privacy.html">PRIVACY POLICY</a>
+      </div>
+      <p class="fine-print">An unofficial fan-made project inspired by The Elder Scrolls series.</p>
+      <p class="fine-print">Not affiliated with or endorsed by Bethesda Softworks, ZeniMax Media, or Discord.</p>
+      <p class="fine-print">© 2026 The Madgod's Herald.</p>
+    </div>
+  </footer>
+</body>
+</html>
