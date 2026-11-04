@@ -1,0 +1,21 @@
+{
+  "name": "madgods-herald-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend for The Madgod's Herald Discord sorting ceremony",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "connect-sqlite3": "^0.9.15",
+    "discord.js": "^14.22.1",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0"
+  }
+}
